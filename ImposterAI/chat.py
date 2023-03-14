@@ -4,12 +4,18 @@ import os
 
 app = Flask(__name__, template_folder='my_templates')
 
+with open("API_KEY") as f:
+    file_contents = f.read()
+
+print(file_contents)
+os.environ["OPENAI_API_KEY"] = file_contents
+
 # Set up OpenAI API credentials
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
 # Define a function to generate a response from OpenAI's GPT
 def generate_response(prompt):
-    message = "Respond as if you were Samuel L Jackson. "+ prompt
+    message = "Respond as if you were persistently and intently flirting with me. "+ prompt
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
