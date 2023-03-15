@@ -2,3 +2,4 @@
 .vs
 .vscode
 *API_KEY*
+*__pycache__/*
