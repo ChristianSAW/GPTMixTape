@@ -1,3 +1,9 @@
+# GPTMixTape/ImposterAI/chat.py
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from SecureKeys import gpt_api_key
 from flask import Flask, render_template, request
 import openai
 import os
@@ -11,7 +17,7 @@ print(file_contents)
 os.environ["OPENAI_API_KEY"] = file_contents
 
 # Set up OpenAI API credentials
-openai.api_key = os.environ["OPENAI_API_KEY"]
+openai.api_key = gpt_api_key #os.environ["OPENAI_API_KEY"]
 
 # Define a function to generate a response from OpenAI's GPT
 def generate_response(prompt):
