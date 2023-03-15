@@ -9,7 +9,11 @@ $(document).ready(function () {
     }
 
     chatForm.on('submit', function (event) {
-        event.preventDefault();
+        // event.preventDefault();
+        if (event.type === 'submit' || (event.type === 'keydown' && event.keyCode === 13)) {
+            event.preventDefault();
+        }
+        
         const userMessage = $('#chat-input').val();
 
         if (userMessage.trim() !== '') {
@@ -19,7 +23,10 @@ $(document).ready(function () {
             $.ajax({
                 type: 'POST',
                 url: '/message',
-                data: {message: userMessage},
+                data: {
+                    message: userMessage,
+                    custom_text: $('#custom-textbox').val()
+                },                
                 success: function (response) {
                     if (response.status === 'success') {
                         appendMessage(response.message, 'assistant-message');

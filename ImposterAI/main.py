@@ -17,24 +17,22 @@ def index():
 @app.route('/message', methods=['POST'])
 def message():
     user_message = request.form['message']
-    chat_gpt_response = send_message_to_chat_gpt(user_message)
+    custom_text = request.form['custom_text']
+    message = custom_text + user_message
+    chat_gpt_response = send_message_to_chat_gpt(message)
     return jsonify(chat_gpt_response)
 
 def send_message_to_chat_gpt(message):
     try:
-        response = openai.Completion.create(
-            engine="text-davinci-002",
-            prompt=f"User: {message}\nAssistant:",
-            temperature=0.7,
-            max_tokens=150,
-            top_p=1,
-            frequency_penalty=0,
-            presence_penalty=0,
-            stop=["\n"]
+        prompt = message
+        response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": prompt},
+        ]
         )
-
-        response_text = response.choices[0].text.strip()
-        return {'status': 'success', 'message': response_text}
+        message = response.choices[0].message.content
+        return {'status': 'success', 'message': message}
 
     except Exception as e:
         return {'status': 'error', 'message': str(e)}
