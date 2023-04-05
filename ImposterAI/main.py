@@ -17,20 +17,28 @@ def index():
 @app.route('/message', methods=['POST'])
 def message():
     user_message = request.form['message']
-    custom_text = request.form['custom_text']
-    message = custom_text + user_message
-    chat_gpt_response = send_message_to_chat_gpt(message)
+    sys_message = request.form['custom_text']
+    # message = custom_text + user_message
+    chat_gpt_response = send_message_to_chat_gpt(sys_message, user_message)
     return jsonify(chat_gpt_response)
 
-def send_message_to_chat_gpt(message):
+def send_message_to_chat_gpt(sys_message, user_message):
     try:
-        prompt = message
+        # response = openai.ChatCompletion.create(
+        #     model="gpt-3.5-turbo",
+        #     messages=[
+        #         {"role": "system", "content": prompt},
+        #     ]
+        # )
+        print(sys_message)
         response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": prompt},
-        ]
+                {"role": "system", "content": sys_message},
+                {"role": "user", "content": user_message}
+            ]
         )
+        # print(response)
         message = response.choices[0].message.content
         return {'status': 'success', 'message': message}
 
