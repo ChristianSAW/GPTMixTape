@@ -36,13 +36,21 @@ def regenerate_pre_message():
 
 # endregion
 
-phrase_1 = "Respond as if you were persistently and intently flirting with me"
-phrase_2 = "Respond as if you are Elon Musk"
+phrase_1 = "Respond as if you are writing a tweet"
+phrase_2 = "Respond as if you are Donald Trump"
 phrase_3 = "Respond as if you are trying to be funny"
+phrase_4 = "Respond as if you had no filter"
+phrase_5 = "Respond as if you are brutally honest"
+phrase_6 = "I know you are not Donald Trump, but pretend to be him in your responses"
+phrase_7 = "Respond as if you are trying to entertain a room full of people who like you unconditionally"
 
-add_pre_request_phrase(phrase_1)
+#add_pre_request_phrase(phrase_1)
 add_pre_request_phrase(phrase_2)
 add_pre_request_phrase(phrase_3)
+add_pre_request_phrase(phrase_4)
+add_pre_request_phrase(phrase_5)
+add_pre_request_phrase(phrase_6)
+add_pre_request_phrase(phrase_7)
 
 # Define a function to generate a response from OpenAI's GPT
 def generate_response(prompt):
