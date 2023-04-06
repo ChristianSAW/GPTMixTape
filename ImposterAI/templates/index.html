@@ -9,12 +9,17 @@
 </head>
 <body>
     <div class="chat-container">
-        <div class="chat-window" id="chat-window"></div>
-        <form id="chat-form" autocomplete="off">
-            <input type="text" class="chat-input" id="chat-input" placeholder="Type your message here...">
-            <input type="text" class="custom-textbox" id="custom-textbox" placeholder="Type custom text here...">
-            <button type="submit" class="chat-submit" id="chat-submit">Send</button>
+        <form id="system-form" autocomplete="off">
+            <input type="text" class="chat-input" id="system-input" placeholder="Type your system message here...">
+            <button type="submit" class="chat-submit" id="system-submit">Send System Message</button>
         </form>
+
+        <div class="chat-window" id="chat-window"></div>
+        <form id="user-form" autocomplete="off">
+            <input type="text" class="chat-input" id="user-input" placeholder="Type your user message here...">
+            <button type="submit" class="chat-submit" id="user-submit">Send User Message</button>
+        </form>
+
     </div>
     <script src="/static/js/scripts.js"></script>
 </body>

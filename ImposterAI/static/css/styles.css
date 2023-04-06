@@ -19,9 +19,9 @@ body {
     padding: 20px;
 }
 
-.chat-message {
+/* .chat-message {
     margin-bottom: 10px;
-}
+} */
 
 .chat-input {
     width: 100%;
@@ -46,5 +46,31 @@ body {
 
 #chat-form {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+  }
+
+.chat-message {
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 10px;
 }
+
+.initials {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    color: #333;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    line-height: 30px;
+}
+
+.initials::before {
+    content: attr(data-initials);
+}
+
