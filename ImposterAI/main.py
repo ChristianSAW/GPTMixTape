@@ -24,13 +24,6 @@ def message():
 
 def send_message_to_chat_gpt(sys_message, user_message):
     try:
-        # response = openai.ChatCompletion.create(
-        #     model="gpt-3.5-turbo",
-        #     messages=[
-        #         {"role": "system", "content": prompt},
-        #     ]
-        # )
-        print(sys_message)
         response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
