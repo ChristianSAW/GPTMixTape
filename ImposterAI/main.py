@@ -11,7 +11,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 #app = Flask(__name__)
 app = Dash(__name__)
-
+current_prompt = ""
 
 
 try:
@@ -48,10 +48,17 @@ app.layout = html.Div([
         Input('send-button', 'n_clicks'),
         State("input", "value")
     )
+
 def output_text(n_clicks, value):
-    sys_message ="Respond as if your best friend."
-    out = send_message_to_chat_gpt(sys_message, value)
-    return out
+    global current_prompt
+    if n_clicks and n_clicks > 0:
+        sys_message ="Respond as if your best friend."
+        out = send_message_to_chat_gpt(sys_message, value)
+        resp = out['message']
+        current_prompt = resp
+    else:
+        resp = current_prompt
+    return resp
     
 #endregion Basic Dash App
 
@@ -80,6 +87,7 @@ def send_message_to_chat_gpt(sys_message, user_message):
         )
         # print(response)
         message = response.choices[0].message.content
+        print(message)
         return {'status': 'success', 'message': message}
 
     except Exception as e:
