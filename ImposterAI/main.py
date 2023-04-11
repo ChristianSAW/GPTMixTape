@@ -38,9 +38,21 @@ app.layout = html.Div([
     ),
     html.Div(
         [
-            dbc.Button("Send", id="send-button", color="primary", className="me-1")
+            dbc.Button("Send", id="send-button", color="primary", className="me-1")            
         ]
-    )
+    ),
+    html.Div(
+        [
+            dbc.Input(id="sys-input", placeholder="Type something...", type="text"),
+            html.Br(),
+            html.P(id="output"),
+        ]
+    ),
+    html.Div(
+        [
+            dbc.Button("Update", id="update-button", color="primary", className="me-1")            
+        ]
+    ),
     ])
 
 @app.callback(
