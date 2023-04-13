@@ -61,13 +61,16 @@ app.layout = html.Div([
                                 id="user-input",
                                 class_name="chat-input",
                                 type="text",                        
-                                placeholder="Type your system message here..."
+                                placeholder="Type your chat message here..."
                             ),
                             dbc.Button(
                                 id="user-input-button",
                                 class_name="chat-submit",
                                 type="submit",
                                 children="Send"
+                            ),
+                            html.P(
+                                id="chat-window-output"
                             )                               
                         ]
                     )
@@ -102,7 +105,7 @@ app.layout = html.Div([
     ])
 
 @app.callback(
-        Output("chat-window", "children"),
+        Output("chat-window-output", "children"),
         Input('user-input-button', 'n_clicks'),
         State("user-input", "value")
     )
