@@ -111,13 +111,14 @@ app.layout = html.Div([
 Send system message
 '''
 @app.callback(
-        Output("sys-window-output", "children"),
+        Output("chat-window-output", "children", allow_duplicate=True),
         Input('system-input-button', 'n_clicks'),
-        State("system-input", "value")
+        State("system-input", "value"),
+        prevent_initial_call=True
     )
-def send_sys_message(n_clicks, value):
+def send_sys_message(n_clicks, system_input):
     if n_clicks and n_clicks > 0:
-        save_message({"role": "system", "content": value})
+        save_message({"role": "system", "content": system_input})
         chat_gpt_response = send_message_to_chat_gpt()
         return chat_gpt_response['message']
     else:
@@ -127,12 +128,13 @@ def send_sys_message(n_clicks, value):
 @app.callback(
         Output("chat-window-output", "children"),
         Input('user-input-button', 'n_clicks'),
-        State("user-input", "value")
+        State("user-input", "value"),
+        prevent_initial_call=True
     )
-def send_user_message(n_clicks, value):
+def send_user_message(n_clicks, user_input):
     global current_prompt
     if n_clicks and n_clicks > 0:
-        save_message({"role": "user", "content": value})
+        save_message({"role": "user", "content": user_input})
         chat_gpt_response = send_message_to_chat_gpt()
         return chat_gpt_response["message"]
     else:
