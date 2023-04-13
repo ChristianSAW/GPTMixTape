@@ -102,9 +102,9 @@ app.layout = html.Div([
     ])
 
 @app.callback(
-        Output("output", "children"),
-        Input('send-button', 'n_clicks'),
-        State("input", "value")
+        Output("chat-window", "children"),
+        Input('user-input-button', 'n_clicks'),
+        State("user-input", "value")
     )
 
 def output_text(n_clicks, value):
@@ -139,8 +139,8 @@ def send_message_to_chat_gpt(sys_message, user_message):
         response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
-                {"role": "system", "content": sys_message},
-                {"role": "user", "content": user_message}
+                # {"role": "system", "content": sys_message},
+                {"role": "user", "content": "Hi"}
             ]
         )
         # print(response)
