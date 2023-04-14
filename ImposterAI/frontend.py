@@ -3,7 +3,7 @@ from dash import Dash, html, dcc, callback
 import dash_bootstrap_components as dbc
 
 
-header = html.H1(children='Title of Dash App', style={'textAlign':'center'})
+header = html.H1(children='Imposter AI', style={'textAlign':'center'})
 body1 = html.Div(
         className="chat-container",
         children=[
