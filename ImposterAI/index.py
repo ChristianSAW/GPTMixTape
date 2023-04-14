@@ -5,12 +5,18 @@ from dash.dependencies import Input, Output
 
 # Import app and layouts
 from app import app
-# from layouts import home_layout, page1_layout, page2_layout
+from frontend import header, body1
 
 # Define the app's layout
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
-    html.Div(id='page-content')
+    html.Div(
+        id='page-content', 
+        children=[
+            header,
+            body1
+        ]
+    )
 ])
 
 # Define the app's callback for switching between pages
