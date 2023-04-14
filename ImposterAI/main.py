@@ -19,8 +19,6 @@ current_prompt = ""
 try:
     with open("API_KEY") as f:
         file_contents = f.read()
-
-    print(file_contents)
     os.environ["OPENAI_API_KEY"] = file_contents
 except:
     from SecureKeys import gpt_api_key

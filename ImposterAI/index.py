@@ -7,6 +7,20 @@ from dash.dependencies import Input, Output
 from app import app
 from frontend import header, body1, messenger_layout
 
+# Import callbacks from other files
+from callbacks.callbacks import send_sys_message, send_user_message
+
+import openai
+import os
+
+try:
+    with open("API_KEY") as f:
+        file_contents = f.read()
+    os.environ["OPENAI_API_KEY"] = file_contents
+except:
+    from SecureKeys import gpt_api_key
+    openai.api_key = gpt_api_key
+
 # Define the app's layout
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
@@ -33,9 +47,9 @@ app.layout = html.Div([
 #     else:
 #         return home_layout
 
-# Import callbacks from other files
-# from callbacks import callbacks1, callbacks2
+
 
 # Run the server
 if __name__ == '__main__':
+    print("Starting the server")
     app.run_server(debug=True)
