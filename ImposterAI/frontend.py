@@ -57,6 +57,25 @@ body1 = html.Div(
         ]
     )
 
+messenger_layout = html.Div([
+    dbc.Row([
+        dbc.Col([
+            html.Div(className='chat-container', children=[
+                html.Div(id='message-container', className='message-container'),
+                dcc.Input(
+                    id='input-message',
+                    placeholder='Type your message here...',
+                    type='text',
+                    value='',
+                    className='input-message'
+                ),
+                dbc.Button('Send', id='submit-message', color='primary', className='send-button')
+            ])
+        ], width={'size': 6, 'offset': 3})
+    ], className='main-row')
+])
+
+
  # html.Div(
     #     [
     #         dbc.Input(id="input", placeholder="Type something...", type="text"),

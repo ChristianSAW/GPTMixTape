@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from dash import Dash, html, dcc, callback
 from dash.dependencies import Input, Output, State
-from frontend import body1, header
+from frontend import body1, header, messenger_layout
 from callbacks import save_message, send_message_to_chat_gpt
 import dash_bootstrap_components as dbc
 import pandas as pd
@@ -31,7 +31,7 @@ except:
 #region Basic Dash App
 app.layout = html.Div([
         header,
-        body1
+        body1,
         ]
     )
    

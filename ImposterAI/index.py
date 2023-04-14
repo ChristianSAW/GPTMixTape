@@ -5,7 +5,7 @@ from dash.dependencies import Input, Output
 
 # Import app and layouts
 from app import app
-from frontend import header, body1
+from frontend import header, body1, messenger_layout
 
 # Define the app's layout
 app.layout = html.Div([
@@ -14,7 +14,8 @@ app.layout = html.Div([
         id='page-content', 
         children=[
             header,
-            body1
+            body1,
+            messenger_layout
         ]
     )
 ])
