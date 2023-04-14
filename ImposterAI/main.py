@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 from dash import Dash, html, dcc, callback
 from dash.dependencies import Input, Output, State
 from frontend import body1, header
-from backend import save_message, send_message_to_chat_gpt
+from callbacks import save_message, send_message_to_chat_gpt
 import dash_bootstrap_components as dbc
 import pandas as pd
 import openai
