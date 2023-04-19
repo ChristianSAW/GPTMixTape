@@ -1,0 +1,8 @@
+*SecureKeys.py
+.vs
+.vscode
+*API_KEY*
+*__pycache__/*
+__pycache__
+prompts
+chatlog
