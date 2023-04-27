@@ -23,30 +23,7 @@ import SendIcon from '@mui/icons-material/Send';
 
 import "./App.css";
 
-// const useStyles = makeStyles({
-//   table: {
-//     minWidth: 650,
-//   },
-//   chatSection: {
-//     width: '100%',
-//     height: '80vh'
-//   },
-//   headBG: {
-//       backgroundColor: '#e0e0e0'
-//   },
-//   borderRight500: {
-//       borderRight: '1px solid #e0e0e0'
-//   },
-//   messageArea: {
-//     height: '70vh',
-//     overflowY: 'auto'
-//   }
-// });
-
-
 const App = () => {
-
-  // const classes = useStyles();
 
   // usestate for setting a javascript
   // object for storing and using data
@@ -90,7 +67,31 @@ const callFlaskFunction = async () => {
 const [name, setName] = useState('');
 const [message, setMessage] = useState('');
 
+const generateResponse = async (newQuestion, setNewQuestion) => {
+  const response = await fetch('api/send_user_message', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ newQuestion }),
+  });
 
+  const data = await response.json();
+  // setNewQuestion(data.result)
+
+  // if (data){
+    setStoredValues([
+      {
+          question: newQuestion,
+          answer: data.content,
+      },
+      ...storedValues,
+  ]);
+  setNewQuestion('');
+  // }
+
+
+}
 
 
   const { Configuration, OpenAIApi } = require("openai");
@@ -102,30 +103,43 @@ const [message, setMessage] = useState('');
 
   const [storedValues, setStoredValues] = useState([]);
 
-  const generateResponse = async (newQuestion, setNewQuestion) => {
-    console.log(newQuestion);
+  // const generateResponse = async (newQuestion, setNewQuestion) => {
+  //   console.log(newQuestion);
 
-    const completion = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
-      messages: [{role: "user", content: newQuestion}],
-    });
-    console.log(completion.data.choices[0].message);
+  //   const completion = await openai.createChatCompletion({
+  //     model: "gpt-3.5-turbo",
+  //     messages: [{role: "user", content: newQuestion}],
+  //   });
+  //   console.log(completion.data.choices[0].message);
 
-    if (completion.data.choices) {
-      setStoredValues([
-          {
-              question: newQuestion,
-              answer: completion.data.choices[0].message,
-          },
-          ...storedValues,
-      ]);
-      setNewQuestion('');
-  }
+  //   if (completion.data.choices) {
+  //     setStoredValues([
+  //         {
+  //             question: newQuestion,
+  //             answer: completion.data.choices[0].message,
+  //         },
+  //         ...storedValues,
+  //     ]);
+  //     setNewQuestion('');
+  // }
 
-};
+// };
 
     return (
         <div>
+          <div className="header-section">
+          <h1>Imposter.AI 🤖</h1>
+                <p>
+                    I am an automated question and answer system, designed to assist you
+                    in finding relevant information. You are welcome to ask me any queries
+                    you may have, and I will do my utmost to offer you a reliable
+                    response. Kindly keep in mind that I am a machine and operate solely
+                    based on programmed algorithms.
+                </p>
+            </div>
+
+            <FormSection generateResponse={generateResponse}/>
+            <AnswerSection storedValues={storedValues}/>
           <div>
         <Grid container>
             <Grid item xs={12} >
@@ -215,7 +229,7 @@ const [message, setMessage] = useState('');
         </Grid>
       </div>
 
-            <div className="header-section">
+      <div className="header-section">
             <h1>React and flask</h1>
                 {/* Calling a data from setdata for showing */}
                 <p>{data.name}</p>
@@ -234,18 +248,8 @@ const [message, setMessage] = useState('');
                   <p>{message}</p>
                 </div>
 
-                <h1>Imposter.AI 🤖</h1>
-                <p>
-                    I am an automated question and answer system, designed to assist you
-                    in finding relevant information. You are welcome to ask me any queries
-                    you may have, and I will do my utmost to offer you a reliable
-                    response. Kindly keep in mind that I am a machine and operate solely
-                    based on programmed algorithms.
-                </p>
-            </div>
 
-            <FormSection generateResponse={generateResponse}/>
-            <AnswerSection storedValues={storedValues}/>
+        </div>
         </div>
     );
 };

@@ -23,7 +23,10 @@ load_openai_api_key()
 
 @app.route("/api/send_user_message", methods=['POST'])
 def send_user_message():
+    print("clicked")
     # Get the user's input
+    data = request.json
+    print(data)
     user_input = request.args.get("input")
 
     # Send the user's input to the ChatGPT API
@@ -32,7 +35,7 @@ def send_user_message():
     completion = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
     messages=[
-        {"role": "user", "content": "Hello!"}
+        {"role": "user", "content": data['newQuestion']}
     ]
     )
 
