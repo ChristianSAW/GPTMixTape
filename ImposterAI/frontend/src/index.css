@@ -38,7 +38,19 @@ body {
 }
 
 .form-section {
-  margin: 30px 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background-color: #1D1E20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  /* margin: 10px 0;
+  position: relative; */
 }
 
 textarea,
@@ -50,23 +62,27 @@ button {
 
 .form-control {
   margin-bottom: 20px;
-  padding: 20px;
+  padding: 12px;
   font-size: 1rem;
   font-family: 'Poppins',
     sans-serif;
   outline: none;
   background-color: #343536;
   color: #DADADB;
-  transition: all 0.5s ease-in-out;
+  resize: none;
+  overflow-y: auto;
+  min-height: 20px;
+  max-height: 120px;
+  /* transition: all 0.5s ease-in-out; */
 }
 
-.form-control:focus {
+/* .form-control:focus {
   border-left: 5px solid #CA228C;
   border-top: 5px solid #CA228C;
   border-top-left-radius: 0%;
   border-bottom-left-radius: 0%;
   border-top-right-radius: 0%;
-}
+} */
 
 .btn {
   background: #000000;
@@ -97,7 +113,7 @@ button {
 } */
 
 .answer-section {
-  margin: 30px 0;
+  margin: 0px 0;
   position: relative;
 
 }
@@ -122,8 +138,8 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  bottom: -10px;
-  right: -10px;
+  bottom: 0px;
+  right: 0px;
   font-size: 1.2rem;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
@@ -132,3 +148,31 @@ button {
 .copy-icon:hover {
   background-color: #CA228C;
 }
+
+.answer-container {
+  height: 450px; /* Adjust the height as needed */
+  overflow-y: auto;
+}
+
+.send-icon {
+  position: absolute;
+  background-color: #343536;
+  width: 47px;
+  height: 47px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 43px;
+  right: 16px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+.send-icon:hover {
+  background-color: #CA228C;
+}
+
+
+
